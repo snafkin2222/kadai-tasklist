@@ -1,8 +1,5 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
 <div>
-  <aside>
-    <div>
       <%= form_with(model: @task, local: true) do |f| %>
         <div>
           <%= f.text_area :status, class: 'form-control' , rows: 1 %>
@@ -12,14 +9,12 @@
         </div>
           <%= f.submit '送信', class: 'btn btn-primary btn-block' %>
       <% end %>
-  </aside>
-  <div>
     <%= render 'tasks/form', tasks: @tasks %>
   </div>
 </div>
 <% else %>
   <div>
     <h1>ようこそ！タスクリストへ</h1>
-    <%= link_to '新規タスクの追加',new_task_path,class: "btn btn-primary" %>
+    <%= link_to '新規登録する', signup_path,class: "btn btn-primary" %>
   </div>
 <% end %>
