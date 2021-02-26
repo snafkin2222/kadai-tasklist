@@ -1,25 +1,24 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+<h1>タスク一覧</h1>
+      <tr>
+        <th>id</th>
+        <th>タスク</th>
+        <th>ステータス</th>
+      </tr>
+     <% @tasks.each do |task| %>
+    <tr>
+      <li><%= link_to task.id, task %> : <%= task.status %> &gt; <%= task.content %></li>
+    </tr>
+    <% end %>
+    <%= link_to '新規タスクの投稿', new_task_path %> 
+  
+<% else %>
 <div>
-  <aside>
-    <div>
-      <%= form_with(model: @task, local: true) do |f| %>
-        <div>
-          <%= f.text_area :status, class: 'form-control' , rows: 1 %>
-        </div>
-        <div>
-          <%= f.text_area :content, class: 'form-control' , rows: 5 %>
-        </div>
-          <%= f.submit '送信', class: 'btn btn-primary btn-block' %>
-      <% end %>
-  </aside>
   <div>
-    <%= render 'tasks/form', tasks: @tasks %>
+    <h1>Your Tasklists</h1>
+
+     <%= link_to 'ログイン',login_path %>
+      <%= link_to '今すぐ新規ユーザ登録',signup_path %>
   </div>
 </div>
-<% else %>
-  <div>
-    <h1>ようこそ！タスクリストへ</h1>
-    <%= link_to '新規タスクの追加',new_task_path,class: "btn btn-primary" %>
-  </div>
 <% end %>

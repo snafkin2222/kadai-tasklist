@@ -1,8 +1,5 @@
 class SessionsController < ApplicationController
   
-  def new
-  end
-
   def create
     email = params[:session][:email].downcase
     password = params[:session][:password]
@@ -11,7 +8,7 @@ class SessionsController < ApplicationController
       redirect_to root_url
     else
       flash.now[:danger] = 'ログインに失敗しました'
-      render 'new'
+      render :new
     end 
   end
 
