@@ -9,9 +9,6 @@ class TasksController < ApplicationController
     end
   end
   
-  def show
-  end
-  
   def new
     @task = Task.new
   end
@@ -25,13 +22,10 @@ class TasksController < ApplicationController
     else
       @tasks = current_user.tasks.order('created_at DESC').page(params[:page])
       flash.now[:danger] = 'Taskが投稿されませんでした'
-      render 'task/new'
+      render :new
     end
   end
-  
-  def edit
-  end
-  
+
   def update
     if @task.update(task_params)
       flash[:success] = 'Taskは正常に更新されました'
